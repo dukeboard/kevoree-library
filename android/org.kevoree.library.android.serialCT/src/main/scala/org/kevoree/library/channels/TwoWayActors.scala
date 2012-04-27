@@ -58,11 +58,7 @@ class TwoWayActors(portName: String) extends 	SerialListener {
 
   serialPort = new UsbSerial(portName,115200,uiService.getRootActivity)
   serialPort.open()
-  if(serialPort.isConnected){
-    serialPort.addEventListener(this)
-  }else {
-    killConnection();
-  }
+  serialPort.addEventListener(this)
 
 
   def sendAndWait(msg: String, waitMsg: String, timeout: Long): java.lang.Boolean = {
@@ -89,7 +85,8 @@ class TwoWayActors(portName: String) extends 	SerialListener {
     closed = true
   }
 
-  def incomingDataEvent(evt: SerialEvent) {
+  def incomingDataEvent(evt: SerialEvent)
+  {
     replyActor ! CONTENTREC(new String(evt.read()))
   }
 

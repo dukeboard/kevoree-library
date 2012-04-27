@@ -35,7 +35,7 @@ public class SerialCT extends AbstractChannelFragment {
 	protected String getPortFromNode (String remoteNodeName) {
 
 		if (!nodePortCache.containsKey(remoteNodeName)) {
-			String remotePort = "/dev/tty_unknown";
+			String remotePort = "*";
 			Option<String> remotePortOption = KevoreePropertyHelper.getStringPropertyForChannel(this.getModelService().getLastModel(), this.getName(), "serialport", true, remoteNodeName);
 			if (remotePortOption.isDefined()) {
                 remotePort = remotePortOption.get();
