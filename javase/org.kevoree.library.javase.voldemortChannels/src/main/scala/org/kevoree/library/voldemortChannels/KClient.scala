@@ -1,11 +1,7 @@
 package org.kevoree.library.voldemortChannels
 
 import voldemort.cluster.Node
-import actors.DaemonActor
-import collection.mutable.HashSet
-import java.util.ArrayList
 import voldemort.client.{ClientConfig, SocketStoreClientFactory, StoreClient, StoreClientFactory}
-import voldemort.VoldemortException
 import voldemort.cluster.failuredetector.FailureDetectorListener
 
 /**
@@ -15,15 +11,15 @@ import voldemort.cluster.failuredetector.FailureDetectorListener
  * Time: 11:13
  */
 
-class KClient(nodes: java.util.List[Node])   {
-
+class KClient(currentNode :Node,nodes: java.util.List[Node])   {
+  val loadbalance : Boolean = false
   val flb = new RoundRobinLoadBalancerFactory()
-  var current: StoreClientFactory = null
+  var currentFactory: StoreClientFactory = null
 
   var FailureDetectorListener = new FailureDetectorListener{
     def nodeUnavailable(p1: Node) {
       println("nodeUnavailable "+p1)
-      current = null
+      currentFactory = null
     }
 
     def nodeAvailable(p1: Node) {
@@ -34,7 +30,7 @@ class KClient(nodes: java.util.List[Node])   {
 
   def lb()
   {
-    if(current == null){
+    if(currentFactory == null){
       import scala.collection.JavaConversions._
       val lb : LoadBalancer =   flb.newLoadBalancer(nodes.toSet)
       val node =    lb.nextNode.get
@@ -42,31 +38,58 @@ class KClient(nodes: java.util.List[Node])   {
         case classOf: Node => {
           try
           {
-            current = new SocketStoreClientFactory(new ClientConfig().setBootstrapUrls("tcp://" + node.getHost + ":" + node.getSocketPort))
-            current.getFailureDetector.addFailureDetectorListener(FailureDetectorListener)
+            currentFactory = new SocketStoreClientFactory(new ClientConfig().setBootstrapUrls("tcp://" + node.getHost + ":" + node.getSocketPort))
+            currentFactory.getFailureDetector.addFailureDetectorListener(FailureDetectorListener)
           } catch
             {
               case e : Exception => {
-                current.close()
-                current = null
+                currentFactory.close()
+                currentFactory = null
               }
             }
         }
         case _ =>    {
-          current = null
+          currentFactory = null
         }
       }
     }
   }
+
+  def local()
+  {
+    if(currentFactory == null)
+    {
+      try
+      {
+        currentFactory = new SocketStoreClientFactory(new ClientConfig().setBootstrapUrls("tcp://" + currentNode.getHost + ":" + currentNode.getSocketPort))
+        currentFactory.getFailureDetector.addFailureDetectorListener(FailureDetectorListener)
+      } catch
+        {
+          case e : Exception => {
+            currentFactory.close()
+            currentFactory = null
+          }
+        }
+
+    }
+
+  }
+
   def getStore(storeName : String) : StoreClient[_, _] = {
     do
     {
-      lb()
-    } while(current == null)
-    current.getStoreClient(storeName)
+      if(loadbalance){
+        lb()
+      } else
+      {
+        local()
+      }
+
+    } while(currentFactory == null)
+    currentFactory.getStoreClient(storeName)
   }
-  
-  
+
+
 
 
 

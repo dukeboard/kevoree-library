@@ -14,6 +14,7 @@ import org.kevoree.Group;
 import org.kevoree.annotation.ChannelTypeFragment;
 import org.kevoree.annotation.*;
 import org.kevoree.extra.voldemort.KUtils;
+import org.kevoree.extra.voldemort.UtilsUpdate;
 import org.kevoree.framework.*;
 import org.kevoree.framework.message.Message;
 import org.slf4j.Logger;
@@ -51,12 +52,11 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
     private Thread handler=null;
     final Semaphore sem = new java.util.concurrent.Semaphore(1);
     private  Boolean alive=true;
+    private Node currentNode=null;
+    private StoreClient store = null;
+    private    KClient client = null;
     @Override
     public Object dispatch(Message message) {
-
-        for (org.kevoree.framework.KevoreePort p : getBindedPorts()) {
-            forward(p, message);
-        }
         for (KevoreeChannelFragment cf : getOtherFragments()) {
             if (!message.getPassedNodes().contains(cf.getNodeName())) {
                 forward(cf, message);
@@ -107,7 +107,6 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
         return ip;
     }
 
-
     public List<String> getAllNodes () {
         ContainerRoot model = this.getModelService().getLastModel();
         for (Object o : model.getGroupsForJ()) {
@@ -147,9 +146,49 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
 
     @Update
     public void updateChannel() {
-        currentNODE.stop();
 
-        currentNODE.start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try
+                {
+                    List<String> listNodes =   getAllNodes();
+                    logger.error("Number of node "+listNodes.size());
+
+                    for(String _node : listNodes)
+                    {
+
+                        String hostname = getAddressModel(_node);
+                        int id =getport(_node, "id");
+                        int httpPort = getport(_node, "httpPort");
+                        int socketPort  = getport(_node, "socketPort");
+                        int adminPort  = getport(_node, "adminPort");
+                        String partition =   KevoreeFragmentPropertyHelper.getPropertyFromFragmentChannel(getModelService().getLastModel(), getName(), "partitions", _node);
+                        List<Integer> partitions =  new ArrayList<Integer>();
+                        StringTokenizer st = new StringTokenizer(partition, ";");
+                        while (st.hasMoreTokens())
+                        {
+                            partitions.add(Integer.parseInt(st.nextToken()));
+                        }
+                        logger.error("Node "+id+" httpPort="+httpPort+" "+" socketPort="+socketPort+" adminPort="+adminPort+" partitions="+partitions);
+                        Node node = new Node(id,hostname,httpPort,socketPort,adminPort,partitions);
+                        nodes.add(node);
+
+                        if(_node.equals(getNodeName()))
+                        {
+                            currentNode  = node;
+                        }
+                    }
+
+
+                } catch (IOException e) {
+                    logger.error("The cluster can't be configure "+e);
+                }
+                UtilsUpdate.applyUpdateNode(currentNode, nodes);
+            }
+        });
+
+
     }
 
 
@@ -163,30 +202,58 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
                 } catch (InterruptedException e) {
                     // ignore
                 }
-                try {
-                    KClient t = new KClient(nodes);
-                    StoreClient store = t.getStore("kevoree");
 
-                    Versioned data =  store.get(remoteNodeName);
-                    Versioned<Message> version=null;
-
-                    if(data !=null)
+                try
+                {
+                    if(client == null){
+                        client  = new KClient(currentNode,nodes);
+                    }
+                    if(store == null)
                     {
-                        // get the value
-                        version = store.get(remoteNodeName);
-                        // modify the value
-                        version.setObject(msg);
-
-                        // update the value
-                        store.put(remoteNodeName,version);
-                    }else
-                    {
-                        store.put(remoteNodeName,msg);
+                        store =  client.getStore("kevoree");
                     }
 
-                } catch (Exception e) {
+                    if(client != null & store != null)
+                    {
+                        logger.debug("Writing message to  "+remoteNodeName);
 
-                    logger.error(e.toString());
+                        msg.setDestNodeName(remoteNodeName);
+
+                        Versioned<Message> data =  store.get(remoteNodeName);
+                        Versioned<Message> newmsg=null;
+
+                        if(data !=null)
+                        {
+
+                            logger.warn("Conflit detection "+data.getVersion());
+
+                            // get the value
+                            newmsg = store.get(remoteNodeName);
+                            
+                            if(data.getValue().getContent() instanceof String)
+                            {
+                                String message = (String)data.getValue().getContent()+"\n "+msg.getContent();
+
+                                msg.setContent(message);
+                            }
+                            
+                            // modify the value
+                            newmsg.setObject(msg);
+
+                            // update the value
+                            store.put(remoteNodeName,newmsg);
+                        }else
+                        {
+                            store.put(remoteNodeName,msg);
+                        }
+                    }
+
+
+
+                } catch (Exception e) {
+                    client = null;
+                    store = null;
+                    //ignore
                 }
                 finally
                 {
@@ -213,6 +280,7 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
 
             for(String _node : listNodes)
             {
+
                 String hostname = getAddressModel(_node);
                 int id =getport(_node, "id");
                 int httpPort = getport(_node, "httpPort");
@@ -226,8 +294,13 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
                     partitions.add(Integer.parseInt(st.nextToken()));
                 }
                 logger.error("Node "+id+" httpPort="+httpPort+" "+" socketPort="+socketPort+" adminPort="+adminPort+" partitions="+partitions);
-                Node node0 = new Node(id,hostname,httpPort,socketPort,adminPort,partitions);
-                nodes.add(node0);
+                Node node = new Node(id,hostname,httpPort,socketPort,adminPort,partitions);
+                nodes.add(node);
+
+                if(_node.equals(getNodeName()))
+                {
+                    currentNode  = node;
+                }
             }
 
 
@@ -249,52 +322,67 @@ public class VoldemortChannels extends AbstractChannelFragment implements Runnab
             logger.error("Running cluster "+e);
         }
 
-        KClient t = new KClient(nodes);
-
-        StoreClient store  = null;
-        Message last =null;
-        while(alive)
+        if(currentNode == null)
+        {
+            logger.error("The current client is not include in the cluster");
+        }
+        else
         {
 
-            if(store == null)
+            KClient t = new KClient(currentNode,nodes);
+            StoreClient store  = null;
+            while(alive)
             {
-                store = t.getStore("kevoree");
-            }
 
-            try
-            {
-                Versioned<Message> data = store.get(getNodeName());
-                if(data != null)
+                if(t == null){
+                    t = new KClient(currentNode,nodes);
+                }
+                if(store == null)
                 {
-                    Message msg = (Message) store.get(this.getNodeName()).getValue();
-
-                    if (!msg.getPassedNodes().contains(getNodeName()))
-                    {
-                        msg.getPassedNodes().add(getNodeName());
-                    }
-                    if(last==null){
-                     last = msg;
-                        remoteDispatch(msg);
-                    }
-                    else {
-
-                        if(!last.getUuid().toString().equals(msg.getUuid().toString()))
-                        {
-                            remoteDispatch(msg);
-                            last = msg;
-                        }else
-                        {
-
-                            store.delete(this.getNodeName(),data.getVersion());
-                            Thread.sleep(500);
-                        }
-                    }
+                    store = t.getStore("kevoree");
                 }
 
-            } catch (Exception e) {
-                logger.error(" "+e);
-                store = null;
+                try
+                {
+                    Versioned<Message> data = store.get(getNodeName());
+
+                    if(data != null)
+                    {
+                        Message msg = (Message) store.get(this.getNodeName()).getValue();
+
+                        logger.debug("read  "+msg.getDestNodeName());
+
+                        if (!msg.getPassedNodes().contains(getNodeName()))
+                        {
+                            msg.getPassedNodes().add(getNodeName());
+                        }
+
+                        if(msg.getDestNodeName().equals(getNodeName()))
+                        {
+
+                            logger.debug("disptach local "+getNodeName()+" "+data.getVersion());
+
+                            for (org.kevoree.framework.KevoreePort p : getBindedPorts())
+                            {
+                                forward(p, msg);
+                            }
+                            logger.debug("Remove local "+getNodeName()+" "+data.getVersion());
+                            store.delete(this.getNodeName(),data.getVersion()) ;
+                        }
+
+
+                    }else {
+                        Thread.sleep(500);
+                    }
+
+                } catch (Exception e) {
+                    store = null;
+                    t = null;
+                    //ignore
+                }
             }
+
+
 
 
         }
