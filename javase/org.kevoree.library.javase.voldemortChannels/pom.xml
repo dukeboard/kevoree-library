@@ -166,23 +166,66 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.kevoree.tools</groupId>
-                <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
-                <version>${kevoree.version}</version>
-                <extensions>true</extensions>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
-                    <nodeTypeNames>JavaSENode</nodeTypeNames>
+                    <instructions>
+                        <Export-Package>org.kevoree.library.javase.kestrelChannels.*</Export-Package>
+                        <Import-Package>!org.kevoree.library.javase.kestrelChannels.*,*</Import-Package>
+                        <DynamicImport-Package>*</DynamicImport-Package>
+                    </instructions>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
+
         </plugins>
     </build>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>dtrott</id>
+            <url>http://maven.davidtrott.com/repository</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugin.scala-tools.org</id>
+            <name>Plugin Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugin.kevoree-github</id>
+            <url>http://maven.kevoree.org/release</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>plugin.kevoree-snapshots</id>
+            <url>http://maven.kevoree.org/snapshots</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>repository.jboss.org</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <!--<repository>
+            <id>maven.twttr.com</id>
+            <url>http://maven.twttr.com/</url>
+        </repository>-->
+        <repository>
+            <id>scala-tools.org</id>
+            <name>Scala-tools Maven2 Repository</name>
+            <url>http://scala-tools.org/repo-releases</url>
+        </repository>
+        <repository>
+            <id>kevoree-release</id>
+            <url>http://maven.kevoree.org/release</url>
+        </repository>
+        <repository>
+            <id>kevoree-snapshots</id>
+            <url>http://maven.kevoree.org/snapshots</url>
+        </repository>
+    </repositories>
+
 
 </project>
