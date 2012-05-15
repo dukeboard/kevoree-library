@@ -1,10 +1,5 @@
 package org.kevoree.library.ehcache;
 
-import net.sf.ehcache.Cache;
-import net.sf.ehcache.CacheManager;
-import net.sf.ehcache.config.CacheConfiguration;
-import net.sf.ehcache.config.Configuration;
-import net.sf.ehcache.config.FactoryConfiguration;
 import org.kevoree.ContainerNode;
 import org.kevoree.ContainerRoot;
 import org.kevoree.Group;
@@ -31,8 +26,7 @@ import java.util.List;
 @Library(name = "JavaSE", names = {"Android"})
 @ChannelTypeFragment
 @DictionaryType({
-        @DictionaryAttribute(name = "cacheName", defaultValue = "kevoreeCluster", optional = false),
-        @DictionaryAttribute(name = "port", optional = false,fragmentDependant = true)
+        @DictionaryAttribute(name = "cacheName", defaultValue = "kevoreeCluster", optional = false)
 })
 public class ehcacheChannel extends AbstractChannelFragment implements Runnable {
 
@@ -68,122 +62,17 @@ public class ehcacheChannel extends AbstractChannelFragment implements Runnable 
 
     @Override
     public Object dispatch(Message message) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public ChannelFragmentSender createSender(String s, String s1) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     @Override
     public void run() {
 
-        String cacheName =   "jed";
-        StringBuilder factoryconfprop = new StringBuilder();
-
-        try
-        {
-            List<String> listNodes =   getAllNodes();
-            logger.debug("Number of node "+listNodes.size());
-
-            for(String _node : listNodes)
-            {
-                if(!_node.equals(getNodeName())){
-                    String hostname = getAddressModel(_node);
-                    int port =getport(_node, "port");
-                    String rmi = "//"+hostname+":"+port+"/"+cacheName+"|";
-                    factoryconfprop.append(rmi);
-                }
-            }
-
-        } catch (Exception e) {
-            logger.error("The cluster can't be configure "+e);
-        }
-
-
-        // remote peer
-        FactoryConfiguration factoryConfig = new FactoryConfiguration();
-        factoryConfig.setClass("net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory");
-        factoryConfig.setProperties("peerDiscovery=manual, rmiUrls="+factoryconfprop.toString());
-        factoryConfig.setPropertySeparator(",");
-
-
-
-        logger.debug("Remote peer properties ="+factoryConfig.getProperties());
-
-
-
-        String rmilocal="";
-        int port = 0;
-        try {
-            String hostname = getAddressModel(getNodeName());
-            port = getport(getNodeName(), "port");
-            rmilocal ="hostName="+hostname+", port="+port+", socketTimeoutMillis=120000";
-        } catch (IOException e) {
-            logger.error("",e);
-        }
-        CacheManager   cacheManager=null;
-        try{
-            // local node
-            FactoryConfiguration listenerFactoryConfig = new FactoryConfiguration();
-            listenerFactoryConfig.setClass("net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory");
-            listenerFactoryConfig.setProperties(rmilocal);
-            listenerFactoryConfig.setPropertySeparator(",");
-
-            logger.debug("Local peer properties ="+listenerFactoryConfig.getProperties());
-
-            CacheConfiguration cacheConfiguration = new CacheConfiguration();
-            cacheConfiguration.setMaxEntriesLocalHeap(100);
-            /*
-cacheConfiguration.setEternal(true);
-cacheConfiguration.overflowToDisk(true);
-cacheConfiguration.setTimeToLiveSeconds(300);
-cacheConfiguration.setTimeToIdleSeconds(3000);
-            */
-            CacheConfiguration.CacheEventListenerFactoryConfiguration  cachEvent =  new CacheConfiguration.CacheEventListenerFactoryConfiguration();
-            cachEvent.setClass("net.sf.ehcache.distribution.RMICacheReplicatorFactory");
-            cachEvent.setProperties("replicateAsynchronously=true, replicatePuts=true,  replicatePutsViaCopy=false, replicateUpdates=true, replicateUpdatesViaCopy=true, replicateRemovals=true, asynchronousReplicationIntervalMillis=50");
-            cachEvent.setPropertySeparator(",");
-
-
-            cacheConfiguration.addCacheEventListenerFactory(cachEvent);
-
-            CacheConfiguration.BootstrapCacheLoaderFactoryConfiguration bootstrapCacheLoaderFactoryConfiguration = new CacheConfiguration.BootstrapCacheLoaderFactoryConfiguration();
-            bootstrapCacheLoaderFactoryConfiguration.setClass("net.sf.ehcache.distribution.RMIBootstrapCacheLoaderFactory");
-            bootstrapCacheLoaderFactoryConfiguration.setProperties("bootstrapAsynchronously=true, maximumChunkSizeBytes=5000000");
-            bootstrapCacheLoaderFactoryConfiguration.setPropertySeparator(",");
-
-            cacheConfiguration.addBootstrapCacheLoaderFactory(bootstrapCacheLoaderFactoryConfiguration);
-
-
-            Configuration configuration = new Configuration();
-            configuration.setDefaultCacheConfiguration(cacheConfiguration);
-            configuration.addCacheManagerPeerProviderFactory(factoryConfig);
-            configuration.addCacheManagerPeerListenerFactory(listenerFactoryConfig);
-
-            cacheManager = CacheManager.create(configuration);
-            Cache cache = new Cache(cacheConfiguration);
-            cache.setName(cacheName);
-            cacheManager.addCache(cache);
-
-        } catch (Exception e) {
-            logger.error("",e);
-        }
-
-
-        if(cacheManager !=null)
-        {
-            Message message = new Message();
-            message.setContent(cacheManager);
-
-            for (org.kevoree.framework.KevoreePort p : getBindedPorts()  )
-            {
-                forward(p, message);
-            }
-        } else {
-            logger.error("CacheManager is NULL");
-        }
 
 
 

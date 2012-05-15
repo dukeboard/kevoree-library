@@ -1,10 +1,14 @@
 package org.kevoree.library.ehcache;
 
+import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.AbstractComponentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Created by jed
@@ -34,9 +38,10 @@ public class TesterMetier2 extends AbstractComponentType implements  Runnable{
     }
 
     @Update
-    public void update() {
-        try {
-
+    public void update()
+    {
+        try
+        {
             current.start();
         } catch (Exception e) {
             // ignore
@@ -45,24 +50,30 @@ public class TesterMetier2 extends AbstractComponentType implements  Runnable{
 
 
     @Override
-    public void run() {
-
-        ;
+    public void run()
+    {
         while (alive)
         {
-
             try {
                 CacheManager c =  this.getPortByName("ehCacheService", IehcacheService.class).getCacheManger();
 
-                logger.debug("Message =  "+c.getCache("jed").get(0));
+                Cache myCache =c.getCache("jed");
+                myCache.addPropertyChangeListener(new PropertyChangeListener() {
+                    @Override
+                    public void propertyChange(PropertyChangeEvent evt) {
+                        System.out.print(evt.getPropertyName()+" old="+evt.getOldValue()+" new="+evt.getNewValue());
+                    }
+                });
 
-            }  catch (Exception e){
-                     logger.error("error");
+
+            }  catch (Exception e)
+            {
+                logger.error("error");
             }
 
 
             try {
-                Thread.sleep(9500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

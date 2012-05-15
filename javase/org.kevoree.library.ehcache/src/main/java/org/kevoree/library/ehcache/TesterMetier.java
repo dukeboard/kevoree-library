@@ -1,5 +1,6 @@
 package org.kevoree.library.ehcache;
 
+import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 import org.kevoree.annotation.*;
@@ -48,7 +49,7 @@ public class TesterMetier extends AbstractComponentType implements  Runnable{
     @Override
     public void run() {
 
-
+        int i=0;
         while (alive)
         {
 
@@ -57,13 +58,24 @@ public class TesterMetier extends AbstractComponentType implements  Runnable{
 
                 CacheManager c =  this.getPortByName("ehCacheService", IehcacheService.class).getCacheManger();
 
-                c.getCache("jed").put(new Element(0,getNodeName()));
+                Cache myCache =   c.getCache("jed");
+
+                myCache.acquireReadLockOnKey(0);
+                System.out.println(myCache.get(0));
+                myCache.releaseReadLockOnKey(0);
 
 
+
+                System.out.println("put on key 0"+i);
+                myCache.acquireWriteLockOnKey(0);
+                Element aCacheElement = new Element(0, getNodeName()+" "+i);
+                myCache.put(aCacheElement);
+                myCache.releaseWriteLockOnKey(0);
+
+                i++;
             }  catch (Exception e){
                 logger.error("error ",e);
             }
-
 
 
             try {
