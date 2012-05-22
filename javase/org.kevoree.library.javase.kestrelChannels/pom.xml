@@ -6,14 +6,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.kevoree.library.javase</groupId>
     <artifactId>org.kevoree.library.javase.kestrelChannels</artifactId>
-    <packaging>bundle</packaging>
+    <!--<packaging>bundle</packaging>-->
     <name>Kevoree :: Library :: JavaSE :: kestrelChannels</name>
-    <version>1.7.0-SNAPSHOT</version>
 
     <parent>
         <artifactId>org.kevoree.library.javase.root</artifactId>
         <groupId>org.kevoree.library.javase</groupId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>1.7.1</version>
         <relativePath>../org.kevoree.library.javase.root/pom.xml</relativePath>
     </parent>
 
@@ -33,11 +32,11 @@
             <groupId>org.kevoree.extra</groupId>
             <artifactId>org.kevoree.extra.osgi.kestrel</artifactId>
             <version>${kestrel.version}</version>
-            <type>bundle</type>
+            <!--<type>bundle</type>-->
         </dependency>
 
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.kevoree.extra</groupId>
             <artifactId>org.kevoree.extra.osgi.twitter.library</artifactId>
             <version>${twitter.version}</version>
@@ -46,7 +45,7 @@
         </dependency>
 
 
-        <dependency>
+        <!--<dependency>
             <groupId>org.kevoree.extra</groupId>
             <artifactId>org.kevoree.extra.netty</artifactId>
             <version>${netty.version}</version>
@@ -76,14 +75,14 @@
             <artifactId>commons-collections</artifactId>
             <version>3.2.1</version>
             <scope>provided</scope>
-            <type>bundle</type>
+            <!--<type>bundle</type>-->
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.5</version>
             <scope>provided</scope>
-            <type>bundle</type>
+            <!--<type>bundle</type>-->
         </dependency>
 
     </dependencies>
@@ -117,7 +116,7 @@
                     </jvmArgs>
                 </configuration>
             </plugin>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
@@ -127,8 +126,7 @@
                         <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
                 </configuration>
-            </plugin>
-
+            </plugin>-->
         </plugins>
     </build>
 
