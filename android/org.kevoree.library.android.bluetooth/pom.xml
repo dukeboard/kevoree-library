@@ -7,6 +7,7 @@
     <name>Kevoree :: Library :: Android :: Bluetooth</name>
     <version>1.7.3-SNAPSHOT</version>
 
+
     <parent>
         <artifactId>org.kevoree.library.android.root</artifactId>
         <groupId>org.kevoree.library.android</groupId>
@@ -28,25 +29,7 @@
     </dependencies>
 
     <build>
-
         <plugins>
-            <plugin>
-                <groupId>org.kevoree.tools</groupId>
-                <artifactId>org.kevoree.tools.annotation.mavenplugin</artifactId>
-                <version>${kevoree.version}</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <nodeTypeNames>AndroidNode</nodeTypeNames>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>generate</goal>
-                            <goal>compile</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- android dex phase -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -114,8 +97,6 @@
                     </jvmArgs>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
-
 </project>

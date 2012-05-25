@@ -6,22 +6,22 @@
     <artifactId>org.kevoree.library</artifactId>
     <packaging>pom</packaging>
     <name>Kevoree :: Library</name>
+<<<<<<< HEAD
     <version>1.7.3</version>
+=======
+    <version>1.7.1</version>
+>>>>>>> eae543963d3b060be38e292bbb360799e0636a53
 
     <properties>
-        <kevoree.version>${project.version}</kevoree.version>
+        <kevoree.version>1.7.1</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.10.0-M2</scala.version>
     </properties>
 
     <modules>
         <module>./javase/org.kevoree.library.javase.root</module>
-        <module>./frascati/org.kevoree.library.frascati.root</module>
-        <module>./sky/org.kevoree.library.sky.root</module>
-        <module>./arduino/org.kevoree.library.arduino.root</module>
         <module>./android/org.kevoree.library.android.root</module>
         <module>./model/org.kevoree.library.model.root</module>
-        <module>./archetypes/org.kevoree.library.archetype.root</module>
     </modules>
 
     <distributionManagement>
@@ -35,6 +35,7 @@
         </snapshotRepository>
     </distributionManagement>
 
+<<<<<<< HEAD
     <profiles>
         <profile>
             <id>graph</id>
@@ -55,4 +56,6 @@
         </profile>
     </profiles>
 
+=======
+>>>>>>> eae543963d3b060be38e292bbb360799e0636a53
 </project>

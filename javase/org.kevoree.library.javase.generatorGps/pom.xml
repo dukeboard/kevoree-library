@@ -5,12 +5,11 @@
     <groupId>org.kevoree.library.javase</groupId>
     <artifactId>org.kevoree.library.javase.generatorGps</artifactId>
     <name>Kevoree :: Library :: JavaSE :: Generator Gps</name>
-    <version>1.7.0-SNAPSHOT</version>
 
     <parent>
         <artifactId>org.kevoree.library.javase.root</artifactId>
         <groupId>org.kevoree.library.javase</groupId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>1.7.1</version>
         <relativePath>../org.kevoree.library.javase.root/pom.xml</relativePath>
     </parent>
 

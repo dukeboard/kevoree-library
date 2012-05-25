@@ -12,18 +12,17 @@
     <packaging>bundle</packaging>
     <version>1.7.3-SNAPSHOT</version>
 
-
     <artifactId>org.kevoree.library.android.osmdroid</artifactId>
     <name>Kevoree :: Library :: Android :: osmdroid</name>
 
 
     <dependencies>
         <!-- Android included libraries -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.google.android</groupId>
             <artifactId>android</artifactId>
             <version>4.0.1.2</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpmime</artifactId>
@@ -60,15 +59,13 @@
         </dependency>
     </dependencies>
 
-
-
     <build>
         <plugins>
             <!-- android dex phase -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1.1</version>
+                <version>1.1</version>
                 <executions>
                     <execution>
                         <id>generate-dex</id>
@@ -106,8 +103,4 @@
             </plugin>
         </plugins>
     </build>
-
-
-
-
 </project>
