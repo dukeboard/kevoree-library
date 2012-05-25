@@ -6,12 +6,12 @@
     <artifactId>org.kevoree.common.gps.android.root</artifactId>
     <packaging>jar</packaging>
     <name>Kevoree :: Common :: Android </name>
-    <version>1.7.0-SNAPSHOT</version>
+    <version>{$kevoree.version}-SNAPSHOT</version>
 
     <parent>
         <artifactId>org.kevoree.common.gps</artifactId>
         <groupId>org.kevoree.common.gps</groupId>
-        <version>1.7.0-SNAPSHOT</version>
+        <version>{$kevoree.version}-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

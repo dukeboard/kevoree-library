@@ -6,7 +6,11 @@
     <artifactId>org.kevoree.library</artifactId>
     <packaging>pom</packaging>
     <name>Kevoree :: Library</name>
+<<<<<<< HEAD
+    <version>1.7.3</version>
+=======
     <version>1.7.1</version>
+>>>>>>> eae543963d3b060be38e292bbb360799e0636a53
 
     <properties>
         <kevoree.version>1.7.1</kevoree.version>
@@ -31,4 +35,27 @@
         </snapshotRepository>
     </distributionManagement>
 
+<<<<<<< HEAD
+    <profiles>
+        <profile>
+            <id>graph</id>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>mvnplugins.fusesource.org</id>
+                    <url>http://mvnplugins.fusesource.org/repo/release</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </pluginRepository>
+            </pluginRepositories>
+            <build>
+                <plugins>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+=======
+>>>>>>> eae543963d3b060be38e292bbb360799e0636a53
 </project>

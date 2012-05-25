@@ -5,7 +5,7 @@
     <groupId>org.kevoree.library.javase</groupId>
     <artifactId>org.kevoree.library.javase.bluetooth</artifactId>
     <packaging>bundle</packaging>
-    <version>1.4.0-SNAPSHOT</version>
+    <version>1.7.1-SNAPSHOT</version>
     <name>Kevoree :: Library :: JavaSE :: Bluetooth</name>
 
     <parent>

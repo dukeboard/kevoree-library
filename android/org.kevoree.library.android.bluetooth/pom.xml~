@@ -1,6 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+    <groupId>org.kevoree.library.android</groupId>
+    <artifactId>org.kevoree.library.android.bluetooth</artifactId>
+    <name>Kevoree :: Library :: Android :: Bluetooth</name>
+    <version>1.7.3-SNAPSHOT</version>
+
 
     <parent>
         <artifactId>org.kevoree.library.android.root</artifactId>
@@ -9,53 +15,16 @@
         <relativePath>../org.kevoree.library.android.root/pom.xml</relativePath>
     </parent>
 
-    <packaging>bundle</packaging>
-    <version>1.7.3-SNAPSHOT</version>
-
-    <artifactId>org.kevoree.library.android.osmdroid</artifactId>
-    <name>Kevoree :: Library :: Android :: osmdroid</name>
-
+    <properties>
+        <android.tools.aapt>${android.home}/platform-tools/aapt</android.tools.aapt>
+        <android.tools.dx>${android.home}/platform-tools/dx</android.tools.dx>
+    </properties>
 
     <dependencies>
-        <!-- Android included libraries -->
-        <!--<dependency>
-            <groupId>com.google.android</groupId>
-            <artifactId>android</artifactId>
-            <version>4.0.1.2</version>
-        </dependency>-->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpmime</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.kevoree.common.gps.android</groupId>
-            <artifactId>org.kevoree.common.gps.android.root</artifactId>
-            <version>1.7.0-SNAPSHOT</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j</artifactId>
-            <version>0.6.1</version>
-        </dependency>
-
-        <!--  -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.4</version>
-        </dependency>
-
-        <!-- test dependencies -->
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.0</version>
-            <scope>test</scope>
+            <groupId>eu.powet</groupId>
+            <artifactId>eu.powet.android.rfcomm</artifactId>
+            <version>1.4.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -101,6 +70,37 @@
                     </execution>
                 </executions>
             </plugin>
+<<<<<<< HEAD
+            <plugin>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <version>2.15.2</version>
+                <executions>
+                    <execution>
+                        <id>scala-compile-first</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>scala-test-compile</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmArgs>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                    </jvmArgs>
+                </configuration>
+            </plugin>
+
+=======
+>>>>>>> eae543963d3b060be38e292bbb360799e0636a53
         </plugins>
     </build>
 </project>

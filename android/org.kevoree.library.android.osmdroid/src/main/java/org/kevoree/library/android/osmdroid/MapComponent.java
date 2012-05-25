@@ -63,7 +63,8 @@ public class MapComponent extends AbstractComponentType {
                 mMapView.setBuiltInZoomControls(true);
                 mMapController = mMapView.getController();
                 mMapController.setZoom(16);
-                GeoPoint gPt = new GeoPoint(48096397, -1743137);
+
+                GeoPoint gPt = new GeoPoint(48085419, -1658936);
                 mMapController.setCenter(gPt);
                 mMapView.setTileSource(TileSourceFactory.MAPNIK);
                 mMapView.setActivated(true);
@@ -131,8 +132,11 @@ public class MapComponent extends AbstractComponentType {
         if(msg instanceof GpsPoint)
         {
             GpsPoint tmp = (GpsPoint) msg;
-            GeoPoint gPt = new GeoPoint(tmp.getLatitudeE6(),tmp.getLongitudeE6());
-            mMapController.setCenter(gPt);
+            if (tmp != null && mMapController != null) {
+                GeoPoint gPt = new GeoPoint(tmp.getLatitudeE6(),tmp.getLongitudeE6());
+                logger.debug("geoPoint: "+gPt.getLatitudeE6()+", "+gPt.getLongitudeE6());
+                mMapController.setCenter(gPt);
+            } else logger.debug("Scandale c'est null");
 
         } else {
             logger.error("WTF !");
