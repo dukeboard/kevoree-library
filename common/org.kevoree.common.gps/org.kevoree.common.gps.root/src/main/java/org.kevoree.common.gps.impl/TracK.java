@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TracK implements ITrack,Serializable {
 
-    private List<GpsPoint> track = new ArrayList<GpsPoint>();
+    private ArrayList<GpsPoint> track = new ArrayList<GpsPoint>();
 
     public void addPoint(GpsPoint point){
         track.add(point);

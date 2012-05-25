@@ -80,6 +80,7 @@ public class SocketChannel extends AbstractChannelFragment implements Runnable {
         if (ip == null || ip.equals("")) {
             ip = "127.0.0.1";
         }
+
         return ip;
     }
 
@@ -179,6 +180,7 @@ public class SocketChannel extends AbstractChannelFragment implements Runnable {
                     ObjectOutputStream oos = new ObjectOutputStream(os);
                     oos.writeObject(msg);
                     oos.flush();
+
 
                     client_consumer = null;
                     os = null;
@@ -286,7 +288,7 @@ public class SocketChannel extends AbstractChannelFragment implements Runnable {
                                     msg = (Message) ois.readObject();
                                 } catch (Exception e) {
                                     ois = null;
-                                    nodeDown(client);
+                                    nodeD own(client);
                                     _alive =false;
                                     msg = null;
                                 }
