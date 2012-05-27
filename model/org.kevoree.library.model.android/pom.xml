@@ -5,17 +5,13 @@
     <parent>
         <artifactId>org.kevoree.library.model.root</artifactId>
         <groupId>org.kevoree.library.model</groupId>
-        <version>1.7.1</version>
+        <version>1.7.3</version>
         <relativePath>../org.kevoree.library.model.root/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>org.kevoree.library.model.android</artifactId>
     <name>Kevoree :: Library :: Model :: Android</name>
-
-    <properties>
-        <kevoree.version>${project.version}</kevoree.version>
-    </properties>
 
     <build>
         <plugins>

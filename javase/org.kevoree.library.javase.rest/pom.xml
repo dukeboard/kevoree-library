@@ -6,12 +6,11 @@
     <artifactId>org.kevoree.library.javase.rest</artifactId>
     <packaging>jar</packaging>
     <name>Kevoree :: Library :: JavaSE :: Rest</name>
-    <version>1.7.1</version>
 
     <parent>
         <artifactId>org.kevoree.library.javase.root</artifactId>
         <groupId>org.kevoree.library.javase</groupId>
-        <version>1.7.1</version>
+        <version>1.7.3</version>
         <relativePath>../org.kevoree.library.javase.root/pom.xml</relativePath>
     </parent>
 
