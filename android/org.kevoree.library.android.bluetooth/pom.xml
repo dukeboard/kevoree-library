@@ -5,13 +5,13 @@
     <groupId>org.kevoree.library.android</groupId>
     <artifactId>org.kevoree.library.android.bluetooth</artifactId>
     <name>Kevoree :: Library :: Android :: Bluetooth</name>
-    <version>1.7.4-SNAPSHOT</version>
+    <version>1.7.4</version>
 
 
     <parent>
         <artifactId>org.kevoree.library.android.root</artifactId>
         <groupId>org.kevoree.library.android</groupId>
-        <version>1.7.4-SNAPSHOT</version>
+        <version>1.7.4</version>
         <relativePath>../org.kevoree.library.android.root/pom.xml</relativePath>
     </parent>
 
