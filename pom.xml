@@ -9,7 +9,7 @@
     <version>1.7.4</version>
 
     <properties>
-        <kevoree.version>1.7.4-SNAPSHOT</kevoree.version>
+        <kevoree.version>1.7.4</kevoree.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <scala.version>2.9.2</scala.version>
     </properties>
