@@ -6,7 +6,7 @@
     <artifactId>org.kevoree.library.android.root</artifactId>
     <packaging>pom</packaging>
     <name>Kevoree :: Library :: Android :: Root</name>
-    <version>1.7.3-SNAPSHOT</version>
+    <version>1.7.3</version>
 
     <parent>
         <artifactId>org.kevoree.library</artifactId>
