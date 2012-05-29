@@ -1,19 +1,17 @@
 package org.kevoree.library.javase.webserver.codemirrorEditor.server;
 
-import java.io.IOException;
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import org.kevoree.android.javase.webserver.codemirrorEditor.client.SendContent;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.kevoree.library.javase.webserver.codemirrorEditor.client.SendContent;
-
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import java.io.IOException;
 
 
 
 
-public class HtmlServiceImpl extends RemoteServiceServlet implements SendContent{
+public class HtmlServiceImpl extends RemoteServiceServlet implements SendContent {
 
 	/**
 	 * 

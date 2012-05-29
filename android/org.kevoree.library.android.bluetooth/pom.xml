@@ -5,19 +5,21 @@
     <groupId>org.kevoree.library.android</groupId>
     <artifactId>org.kevoree.library.android.bluetooth</artifactId>
     <name>Kevoree :: Library :: Android :: Bluetooth</name>
-    <version>1.7.3-SNAPSHOT</version>
+    <version>1.7.4-SNAPSHOT</version>
 
 
     <parent>
         <artifactId>org.kevoree.library.android.root</artifactId>
         <groupId>org.kevoree.library.android</groupId>
-        <version>1.7.3</version>
+        <version>1.7.4-SNAPSHOT</version>
         <relativePath>../org.kevoree.library.android.root/pom.xml</relativePath>
     </parent>
 
     <properties>
+        <!--<kevoree.version>1.7.4-SNAPSHOT</kevoree.version>-->
         <android.tools.aapt>${android.home}/platform-tools/aapt</android.tools.aapt>
         <android.tools.dx>${android.home}/platform-tools/dx</android.tools.dx>
+        <kevoree.exclude>com.google.android:*,commons-*:*,org.apache.httpcomponents:*,org.khronos:*,xerces:*,xpp3:*,org.json:*,cglib:*,org.objenesis:*,org.slf4j:slf4j-android</kevoree.exclude>
     </properties>
 
     <dependencies>
@@ -25,6 +27,17 @@
             <groupId>eu.powet</groupId>
             <artifactId>eu.powet.android.rfcomm</artifactId>
             <version>1.4.2-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-android</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>2.9.2</version>
         </dependency>
     </dependencies>
 
@@ -97,7 +110,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 

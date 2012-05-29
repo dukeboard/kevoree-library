@@ -1,5 +1,6 @@
 package org.kevoree.library.javase.webserver.servlet;
 
+import org.kevoree.android.javase.webserver.servlet.KevoreeServletRequest;
 import org.kevoree.annotation.ComponentFragment;
 import org.kevoree.library.javase.webserver.AbstractPage;
 import org.kevoree.library.javase.webserver.KevoreeHttpRequest;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -45,7 +47,7 @@ public abstract class AbstractHttpServletPage extends AbstractPage {
                     return getSharedServletContext();
                 }
 
-                private HashMap<String, String> initParameterNames = new HashMap<String, String>();
+                private Map<String, String> initParameterNames = new HashMap<String, String>();
 
                 @Override
                 public String getInitParameter(String name) {
@@ -83,7 +85,7 @@ public abstract class AbstractHttpServletPage extends AbstractPage {
             logger.error("Error while processing request", e);
         }
         wrapper_response.populateKevoreeResponse(response);
-        return super.process(request, response);
+        return response;
     }
 
 

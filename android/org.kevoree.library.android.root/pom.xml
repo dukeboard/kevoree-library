@@ -6,17 +6,17 @@
     <artifactId>org.kevoree.library.android.root</artifactId>
     <packaging>pom</packaging>
     <name>Kevoree :: Library :: Android :: Root</name>
-    <version>1.7.3</version>
+    <!--<version>1.7.4-SNAPSHOT</version>-->
 
     <parent>
         <artifactId>org.kevoree.library</artifactId>
         <groupId>org.kevoree.library</groupId>
-        <version>1.7.3</version>
+        <version>1.7.4-SNAPSHOT</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <properties>
-        <kevoree.version>1.7.3</kevoree.version>
+        <!--<kevoree.version>1.7.4-SNAPSHOT</kevoree.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <android.tools.aapt>${android.home}/platform-tools/aapt</android.tools.aapt>
         <android.tools.dx>${android.home}/platform-tools/dx</android.tools.dx>

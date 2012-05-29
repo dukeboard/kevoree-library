@@ -19,6 +19,7 @@ package org.kevoree.library.defaultNodeTypes.osgi.deploy.command
  */
 
 import org.kevoree._
+import android.defaultNodeTypes.osgi.deploy.command.StartInstanceCommand
 import library.defaultNodeTypes.jcl.deploy.context.KevoreeDeployManager
 import library.defaultNodeTypes.osgi.deploy.{KevoreeOSGIMapping, OSGIKevoreeDeployManager}
 import org.kevoree.framework.KevoreeActor
