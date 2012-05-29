@@ -1,6 +1,8 @@
 package org.kevoree.library.javase.webserver;
 
-import org.kevoree.annotation.*;
+import org.kevoree.android.javase.webserver.AbstractPage;
+import org.kevoree.annotation.ComponentType;
+import org.kevoree.annotation.Port;
 import org.kevoree.framework.MessagePort;
 
 @ComponentType

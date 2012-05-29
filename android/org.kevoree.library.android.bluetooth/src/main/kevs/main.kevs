@@ -1,0 +1,28 @@
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nodeType/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.fakeDomo/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nanohttp/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.library.android/org.kevoree.library.android.bluetooth/1.7.4-SNAPSHOT"
+//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.socketChannels/1.7.4-SNAPSHOT"
+//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.defaultChannels/1.7.4-SNAPSHOT"
+
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.nanohttp/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.javaseNode/1.7.4-SNAPSHOT"
+
+addNode node0:AndroidNode
+addNode node1:AndroidNode
+
+addGroup sync : NanoRestGroup
+addToGroup sync node0
+addToGroup sync node1
+
+addComponent console0@node0 : AFakeConsole
+addComponent console1@node1 : AFakeConsole
+
+addChannel channel0 : BluetoothChannel
+//addChannel channel1 : BluetoothChannel
+
+bind console0.textEntered@node0 =>channel0
+//bind console1.textEntered@node1 =>channel1
+
+//bind console0.showText@node0 =>channel1
+bind console1.showText@node1 =>channel0

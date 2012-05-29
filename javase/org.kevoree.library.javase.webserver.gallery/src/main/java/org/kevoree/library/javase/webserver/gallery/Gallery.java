@@ -1,10 +1,11 @@
 package org.kevoree.library.javase.webserver.gallery;
 
+import org.kevoree.android.javase.webserver.AbstractPage;
+import org.kevoree.android.javase.webserver.gallery.AlbumsService;
 import org.kevoree.annotation.ComponentType;
 import org.kevoree.annotation.DictionaryAttribute;
 import org.kevoree.annotation.DictionaryType;
 import org.kevoree.annotation.Update;
-import org.kevoree.library.javase.webserver.AbstractPage;
 import org.kevoree.library.javase.webserver.KevoreeHttpRequest;
 import org.kevoree.library.javase.webserver.KevoreeHttpResponse;
 import org.slf4j.Logger;

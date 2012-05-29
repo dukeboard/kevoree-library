@@ -1,5 +1,6 @@
 package org.kevoree.library.javase.webserver;
 
+import org.kevoree.android.javase.webserver.AbstractPage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import scala.Option;

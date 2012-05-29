@@ -19,7 +19,7 @@ object Tester extends App {
   val lr = new LocalServletRegistry
 
   lr.registerServlet("/*",new HttpServlet{})
-  println(lr.tryURL("/",new KevoreeHttpRequest,new KevoreeHttpResponse))
+//  println(lr.tryURL("/",new KevoreeHttpRequest,new KevoreeHttpResponse))
 
 
 

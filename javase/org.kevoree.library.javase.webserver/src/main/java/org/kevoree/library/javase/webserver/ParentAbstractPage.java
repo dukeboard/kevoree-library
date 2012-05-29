@@ -1,5 +1,6 @@
 package org.kevoree.library.javase.webserver;
 
+import org.kevoree.android.javase.webserver.AbstractPage;
 import org.kevoree.annotation.ComponentFragment;
 import org.kevoree.annotation.Library;
 import org.kevoree.annotation.Start;
