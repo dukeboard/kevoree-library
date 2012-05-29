@@ -1,7 +1,7 @@
 package org.kevoree.library.javase.webserver.codemirrorEditor.server;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import org.kevoree.android.javase.webserver.codemirrorEditor.client.SendContent;
+import org.kevoree.library.javase.webserver.codemirrorEditor.client.SendContent;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
