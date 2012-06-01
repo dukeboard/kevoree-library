@@ -3,7 +3,7 @@ package org.kevoree.library.javase.webserver
 import java.util.HashMap
 import util.matching.Regex
 import java.util.regex.Pattern
-import org.kevoree.library.javase.webserver.impl
+import org.kevoree.library.javase.webserver.impl.KevoreeHttpRequestImpl
 /**
  * Created by IntelliJ IDEA.
  * User: duke
