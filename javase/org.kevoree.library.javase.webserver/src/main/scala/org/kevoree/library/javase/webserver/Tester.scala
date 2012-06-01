@@ -25,7 +25,7 @@ server.start()      */
 val urlHandler = new URLHandlerScala
 urlHandler.initRegex("/css/**")
 
-  val ask = new KevoreeHttpRequest
+  val ask = new KevoreeHttpRequestImpl
   ask.setUrl("/css/bootstrap.css/css")
 println(urlHandler.getLastParam(ask.getUrl,"/css/**"))
 println(urlHandler.check(ask).get.asInstanceOf[KevoreeHttpRequest].getResolvedParams )
