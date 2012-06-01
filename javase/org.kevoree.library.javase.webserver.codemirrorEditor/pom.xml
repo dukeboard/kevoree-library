@@ -20,6 +20,7 @@
         <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <hibernate.version>4.1.0.Final</hibernate.version>
+        <kevoree.include>*:*</kevoree.include>
     </properties>
 
     <dependencies>

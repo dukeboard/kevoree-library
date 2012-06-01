@@ -33,7 +33,11 @@ public class KevoreeServletRequest implements HttpServletRequest {
         basePath = _basePath;
         input = new ServletInputStream() {
 
-            ByteArrayInputStream inputStream = new ByteArrayInputStream(kevRequest.getRawBody());
+            ByteArrayInputStream inputStream = null;
+            {
+                if (kevRequest.getRawBody() != null)
+                    inputStream = new ByteArrayInputStream(kevRequest.getRawBody());
+            }
 
             @Override
             public int read() throws IOException {
