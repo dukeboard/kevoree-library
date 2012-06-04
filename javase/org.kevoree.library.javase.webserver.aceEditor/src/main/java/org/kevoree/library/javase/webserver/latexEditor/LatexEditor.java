@@ -1,7 +1,7 @@
 package org.kevoree.library.javase.webserver.latexEditor;
 
 import com.google.gwt.user.server.rpc.RPC;
-import org.kevoree.android.javase.webserver.latexEditor.server.latexEditorServiceImpl;
+import org.kevoree.library.javase.webserver.latexEditor.server.latexEditorServiceImpl;
 import org.kevoree.annotation.*;
 import org.kevoree.framework.message.StdKevoreeMessage;
 import org.kevoree.library.javase.fileSystem.LockFilesService;

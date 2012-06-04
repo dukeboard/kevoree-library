@@ -16,6 +16,7 @@ package org.kevoree.library.javase.webserver
  * limitations under the License.
  */
 
+import impl.KevoreeHttpRequestImpl
 import org.slf4j.LoggerFactory
 import akka.actor.Actor
 import cc.spray.can._
@@ -29,11 +30,11 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
 
   case class GARBAGE (minLastCheck: Long)
 
-  case class RequestResponderTuple (responder: RequestResponder, uuid: UUID, time: Long)
+  case class RequestResponderTuple (responder: RequestResponder, uuid: Int, time: Long)
 
   class ResponseActor extends akka.actor.Actor {
-    var map: scala.collection.mutable.HashMap[UUID, Tuple2[RequestResponder, Long]] = scala.collection.mutable
-      .HashMap[UUID, Tuple2[RequestResponder, Long]]()
+    var map: scala.collection.mutable.HashMap[Int, (RequestResponder, Long)] = scala.collection.mutable
+      .HashMap[Int, (RequestResponder, Long)]()
 
     def receive = {
       case GARBAGE(minLastCheck) => {
@@ -89,7 +90,7 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
       responder.complete(response("Unknown resource!", 404, defaultHeaders))
 
     case RequestContext(HttpRequest(HttpMethods.GET, url, headers, _, _), _, responder) =>
-      val kevMsg = new KevoreeHttpRequest
+      val kevMsg = new KevoreeHttpRequestImpl
       actorRef ! RequestResponderTuple(responder, kevMsg.getTokenID, System.currentTimeMillis())
       val paramsRes = GetParamsParser.getParams(url)
       kevMsg.setUrl(paramsRes._1)
@@ -102,7 +103,7 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
       request.process(kevMsg)
 
     case RequestContext(HttpRequest(HttpMethods.POST, url, headers, body, _), _, responder) =>
-      val kevMsg = new KevoreeHttpRequest
+      val kevMsg = new KevoreeHttpRequestImpl
       actorRef ! RequestResponderTuple(responder, kevMsg.getTokenID, System.currentTimeMillis())
 
       val paramsRes1 = GetParamsParser.getParams(url)

@@ -1,6 +1,5 @@
 package org.kevoree.library.javase.webserver.servlet;
 
-import org.kevoree.android.javase.webserver.servlet.KevoreeServletRequest;
 import org.kevoree.annotation.ComponentFragment;
 import org.kevoree.library.javase.webserver.AbstractPage;
 import org.kevoree.library.javase.webserver.KevoreeHttpRequest;

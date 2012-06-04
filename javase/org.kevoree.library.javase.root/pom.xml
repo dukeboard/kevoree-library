@@ -10,7 +10,7 @@
     <parent>
         <artifactId>org.kevoree.library</artifactId>
         <groupId>org.kevoree.library</groupId>
-        <version>1.7.4</version>
+        <version>1.7.5</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -25,6 +25,7 @@
         <module>../org.kevoree.library.javase.jPaxos</module>
         <module>../org.kevoree.library.javase.fileSystemSVN</module>
         <module>../org.kevoree.library.javase.fileSystemGit</module>
+        <!--<module>../org.kevoree.library.javase.fileSystemGitRepository</module>-->
         <module>../org.kevoree.library.javase.javaseOSGINode</module>
         <module>../org.kevoree.library.javase.hidrfid</module>
         <module>../org.kevoree.library.javase.kinect</module>
@@ -37,6 +38,7 @@
         <module>../org.kevoree.library.javase.webserver.servlet</module>
         <module>../org.kevoree.library.javase.webserver.jenkins</module>
         <module>../org.kevoree.library.javase.webserver.gitblit</module>
+        <!--<module>../org.kevoree.library.javase.webserver.diaporAnus</module>-->
         <!--<module>../org.kevoree.library.javase.webserver.pebble</module>-->
         <module>../org.kevoree.library.javase.webserver.codemirrorEditor</module>
         <!--<module>../org.kevoree.library.javase.kestrelChannels</module>-->
