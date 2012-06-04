@@ -30,11 +30,11 @@ public class HtmlServiceImpl extends RemoteServiceServlet implements SendContent
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		super.doGet(req, resp);
-		System.err.println("toto");
+		//System.err.println("toto");
 	}
 	@Override
 	public void sendHtmlContent(String s) {
-		
+        System.err.println("toto " + s);
 		wrappee.sendHtmlContent(s) ;
 	}
 
