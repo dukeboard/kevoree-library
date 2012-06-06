@@ -9,7 +9,7 @@
         <relativePath>../org.kevoree.library.javase.root/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>bundle</packaging>
+    <!--<packaging>bundle</packaging>-->
 
     <artifactId>org.kevoree.library.javase.webserver.aceEditor</artifactId>
     <name>Kevoree :: Library :: JavaSE :: WebServer :: AceEditor</name>
@@ -47,16 +47,25 @@
             <groupId>org.kevoree.corelibrary.javase</groupId>
             <artifactId>org.kevoree.library.javase.webserver.api</artifactId>
             <version>${kevoree.version}</version>
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.kevoree.corelibrary.javase</groupId>
             <artifactId>org.kevoree.library.javase.fileSystem</artifactId>
             <version>${kevoree.version}</version>
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>org.kevoree.library.javase</groupId>
             <artifactId>org.kevoree.library.javase.webserver.servlet</artifactId>
             <version>${kevoree.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
+            <!--<scope>provided</scope>-->
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -113,7 +122,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+           <!-- <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>2.3.5</version>
@@ -137,8 +146,13 @@
                         <DynamicImport-Package>*</DynamicImport-Package>
                     </instructions>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
+            <plugin>
+                <groupId>org.kevoree.platform</groupId>
+                <artifactId>org.kevoree.platform.mavenrunner</artifactId>
+                <version>${kevoree.version}</version>
+            </plugin>
         </plugins>
     </build>
 </project>

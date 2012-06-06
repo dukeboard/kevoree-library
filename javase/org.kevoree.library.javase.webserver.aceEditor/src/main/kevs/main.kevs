@@ -1,0 +1,31 @@
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.javaseNode/{kevoree.version}"
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.nanohttp/{kevoree.version}"
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.defaultChannels/{kevoree.version}"
+merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.webserver.aceEditor/{kevoree.version}"
+
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.webserver.api/{kevoree.version}"
+merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.webserver/{kevoree.version}"
+merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.webserver.servlet/{kevoree.version}"
+
+addNode node0 : JavaSENode {logLevel = "DEBUG"}
+
+addGroup sync : NanoRestGroup
+addToGroup sync node0
+
+addComponent webServer@node0 : WebServer
+addComponent latexEditor@node0 : LatexEditor {urlpattern = "/**"}
+addComponent fileSystem@node0 : BasicFileSystem {basedir = "/home/edaubert/Documents/svns/Triskell.bak/DAIS2012/"}
+
+addChannel channel1 : defMSG
+addChannel channel2 : defMSG
+addChannel channel3 : defSERVICE
+
+bind webServer.handler@node0 => channel1
+bind latexEditor.request@node0 => channel1
+
+bind webServer.response@node0 => channel2
+bind latexEditor.content@node0 => channel2
+
+bind latexEditor.files@node0 => channel3
+bind fileSystem.files@node0 => channel3
+
