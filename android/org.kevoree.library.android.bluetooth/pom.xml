@@ -110,6 +110,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.kevoree.platform</groupId>
+                <artifactId>org.kevoree.platform.mavenrunner</artifactId>
+                <version>${kevoree.version}</version>
+                <configuration>
+                    <model>${project.basedir}/src/main/kevs/main.kevs</model><!-- this is the default value so it is not needed -->
+                    <targetNode>node0</targetNode><!-- this is the default value so it is not needed -->
+                    <!-- the following properties are only used by kev:push -->
+                    <viaGroup>sync</viaGroup><!-- this is the default value so it is not needed -->
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
