@@ -11,4 +11,5 @@ keystore
 **.iws
 **.idea/
 **target/
+**.*~
 

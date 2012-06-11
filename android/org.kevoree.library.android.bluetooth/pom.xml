@@ -15,13 +15,6 @@
         <relativePath>../org.kevoree.library.android.root/pom.xml</relativePath>
     </parent>
 
-    <properties>
-        <!--<kevoree.version>1.7.4-SNAPSHOT</kevoree.version>-->
-        <android.tools.aapt>${android.home}/platform-tools/aapt</android.tools.aapt>
-        <android.tools.dx>${android.home}/platform-tools/dx</android.tools.dx>
-        <kevoree.exclude>com.google.android:*,commons-*:*,org.apache.httpcomponents:*,org.khronos:*,xerces:*,xpp3:*,org.json:*,cglib:*,org.objenesis:*,org.slf4j:slf4j-android</kevoree.exclude>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>eu.powet</groupId>
@@ -33,11 +26,6 @@
                     <artifactId>slf4j-android</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.scala-lang</groupId>
-            <artifactId>scala-library</artifactId>
-            <version>2.9.2</version>
         </dependency>
     </dependencies>
 
@@ -115,13 +103,11 @@
                 <artifactId>org.kevoree.platform.mavenrunner</artifactId>
                 <version>${kevoree.version}</version>
                 <configuration>
-                    <model>${project.basedir}/src/main/kevs/main.kevs</model><!-- this is the default value so it is not needed -->
-                    <targetNode>node0</targetNode><!-- this is the default value so it is not needed -->
-                    <!-- the following properties are only used by kev:push -->
-                    <viaGroup>sync</viaGroup><!-- this is the default value so it is not needed -->
+                    <model>${project.basedir}/src/main/kevs/main.kevs</model>
+                    <targetNode>node0</targetNode>
+                    <viaGroup>sync</viaGroup>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
