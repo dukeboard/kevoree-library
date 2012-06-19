@@ -1,5 +1,4 @@
 merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nodeType/{kevoree.version}"
 merge "mvn:org.kevoree.library.android/org.kevoree.library.android.text2speech/{kevoree.version}"
-merge "mvn:org.kevoree.library.android/org.kevoree.library.android.agrapher/{kevoree.version}"
 merge "mvn:org.kevoree.library.android/org.kevoree.library.android.generatorGps/{kevoree.version}"
 merge "mvn:org.kevoree.library.android/org.kevoree.library.android.osmdroid/{kevoree.version}"
