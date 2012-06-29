@@ -10,12 +10,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>org.kevoree.library.model.javase</artifactId>
-    <name>Kevoree :: Library :: Model :: JavaSE</name>
-
-    <properties>
-        <kevoree.version>${project.version}</kevoree.version>
-    </properties>
+    <artifactId>org.kevoree.library.model.jenkins</artifactId>
+    <name>Kevoree :: Library :: Model :: Jenkins</name>
 
     <build>
         <plugins>
@@ -33,5 +29,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
