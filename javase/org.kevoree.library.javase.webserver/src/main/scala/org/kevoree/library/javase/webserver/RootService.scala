@@ -23,6 +23,7 @@ import cc.spray.can._
 import org.kevoree.framework.MessagePort
 import java.util.UUID
 import scala.collection.JavaConversions._
+import java.util
 
 class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap, timeout: Long) extends Actor {
   val log = LoggerFactory.getLogger(getClass)
@@ -84,6 +85,8 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
   actorRef.start()
   bootstrap.setResponseActor(actorRef)
 
+  private val random = new util.Random()
+
   protected def receive = {
 
     case RequestContext(HttpRequest(HttpMethods.GET, "/favicon.ico", _, _, _), _, responder) =>
@@ -91,6 +94,7 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
 
     case RequestContext(HttpRequest(HttpMethods.GET, url, headers, _, _), _, responder) =>
       val kevMsg = new KevoreeHttpRequestImpl
+//      kevMsg.setTokenID(random.nextInt()) //fix for kevoree version before 1.8.1
       actorRef ! RequestResponderTuple(responder, kevMsg.getTokenID, System.currentTimeMillis())
       val paramsRes = GetParamsParser.getParams(url)
       kevMsg.setUrl(paramsRes._1)
@@ -104,6 +108,7 @@ class RootService (id: String, request: MessagePort, bootstrap: ServerBootstrap,
 
     case RequestContext(HttpRequest(HttpMethods.POST, url, headers, body, _), _, responder) =>
       val kevMsg = new KevoreeHttpRequestImpl
+//      kevMsg.setTokenID(random.nextInt()) //fix for kevoree version before 1.8.1
       actorRef ! RequestResponderTuple(responder, kevMsg.getTokenID, System.currentTimeMillis())
 
       val paramsRes1 = GetParamsParser.getParams(url)
