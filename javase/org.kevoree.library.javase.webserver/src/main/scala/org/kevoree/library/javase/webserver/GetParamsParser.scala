@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory
 object GetParamsParser {
   private val logger = LoggerFactory.getLogger(getClass)
 
-  def getParams (queryString: String): Tuple2[String, java.util.HashMap[String, String]] = {
+  def getParams (queryString: String): (String, java.util.HashMap[String, String]) = {
     val params = new java.util.HashMap[String, String]()
     val urlParts = queryString.split("\\?")
     if (urlParts.size > 1) {
@@ -64,7 +64,7 @@ object GetParamsParser {
         getParams("?" + new String(body, "UTF-8"))._2
       }
       case Some(header) => {
-        logger.warn("The web server is currently not able to manage this kind of content-type: {}", header._2)
+        logger.debug("The web server is currently not able to manage this kind of content-type: \"{}\"\nto get parameters on the body: \"{}\"", header._2, new String(body, "UTF-8"))
         new java.util.HashMap[String, String](0)
       }
       case None => new java.util.HashMap[String, String](0)
