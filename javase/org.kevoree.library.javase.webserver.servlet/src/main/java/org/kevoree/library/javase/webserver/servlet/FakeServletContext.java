@@ -24,14 +24,14 @@ public class FakeServletContext implements ServletContext {
     @Override
     public String getContextPath() {
         
-        logger.warn("Call getContextPath");
+        logger.debug("Call getContextPath");
         
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public ServletContext getContext(String uripath) {
-        logger.warn("Call getContext");
+        logger.debug("Call getContext");
         return this;
     }
 
@@ -57,56 +57,64 @@ public class FakeServletContext implements ServletContext {
 
     @Override
     public String getMimeType(String file) {
-        logger.warn("Call getMimeType");
+        logger.debug("Call getMimeType");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Set<String> getResourcePaths(String path) {
-        logger.warn("Call getResourcePaths");
+        logger.debug("Call getResourcePaths");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public URL getResource(String path) throws MalformedURLException {
-        logger.warn("Call getResource");
+        logger.debug("Call getResource");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public InputStream getResourceAsStream(String path) {
        // return this.getResourceAsStream(path);
-        logger.warn("Call getResourceAsStream");
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+
+        String p=path;
+        if (path.startsWith("/"))
+            p = path.substring(1);
+        //logger.debug("Call getResourceAsStream " +path + " "+ p);
+        InputStream str =  Thread.currentThread().getContextClassLoader().getResourceAsStream(p);  //To change body of implemented methods use File | Settings | File Templates.
+
+        //logger.debug(" test " + str + "\nclassloader = "+ Thread.currentThread().getContextClassLoader()  + Thread.currentThread().getContextClassLoader().getClass());
+        return str;
+
     }
 
     @Override
     public RequestDispatcher getRequestDispatcher(String path) {
-        logger.warn("Call getRequestDispatcher");
+        logger.debug("Call getRequestDispatcher");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public RequestDispatcher getNamedDispatcher(String name) {
-        logger.warn("Call getNamedDispatcher");
+        logger.debug("Call getNamedDispatcher");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Servlet getServlet(String name) throws ServletException {
-        logger.warn("Call getServlet");
+        logger.debug("Call getServlet");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Enumeration<Servlet> getServlets() {
-        logger.warn("Call getServlets");
+        logger.debug("Call getServlets");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public Enumeration<String> getServletNames() {
-        logger.warn("Call getServletNames");
+        logger.debug("Call getServletNames");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -127,13 +135,13 @@ public class FakeServletContext implements ServletContext {
 
     @Override
     public String getRealPath(String path) {
-        logger.warn("Call getRealPath");
+        logger.debug("Call getRealPath");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public String getServerInfo() {
-        logger.warn("Call getServerInfo");
+        logger.debug("Call getServerInfo");
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
@@ -290,8 +298,8 @@ public class FakeServletContext implements ServletContext {
 
     @Override
     public ClassLoader getClassLoader() {
-        //return this.getClass().getClassLoader();
-        return null;
+        return this.getClass().getClassLoader();
+        //return null;
     }
 
     @Override

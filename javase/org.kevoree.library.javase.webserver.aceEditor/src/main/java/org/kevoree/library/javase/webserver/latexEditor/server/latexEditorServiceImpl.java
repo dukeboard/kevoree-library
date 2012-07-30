@@ -73,6 +73,16 @@ public class latexEditorServiceImpl extends RemoteServiceServlet implements late
             public void unlock(String relativePath) {
                 //To change body of implemented methods use File | Settings | File Templates.
             }
+
+            @Override
+            public boolean mkdirs(String s) {
+                return false;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+
+            @Override
+            public boolean delete(String s) {
+                return false;  //To change body of implemented methods use File | Settings | File Templates.
+            }
         };
         
     }
