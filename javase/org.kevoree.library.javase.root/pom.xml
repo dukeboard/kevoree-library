@@ -10,7 +10,7 @@
     <parent>
         <artifactId>org.kevoree.library</artifactId>
         <groupId>org.kevoree.library</groupId>
-        <version>1.8.3-SNAPSHOT</version>
+        <version>1.8.3</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -29,6 +29,7 @@
         <module>../org.kevoree.library.javase.kinect</module>
         <module>../org.kevoree.library.javase.javacv</module>
         <module>../org.kevoree.library.javase.vlc</module>
+        <module>../org.kevoree.library.javase.webserver.servlet</module>
         <!--<module>../org.kevoree.library.javase.webserver.gallery</module>-->
         <module>../org.kevoree.library.javase.webserver.aceEditor</module>
         <module>../org.kevoree.library.javase.webserver.reasoner</module>
