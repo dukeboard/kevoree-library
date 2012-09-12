@@ -1,4 +1,4 @@
-package org.kevoree.library.xmpp;
+package org.kevoree.library.xmpp.cmp;
 
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.ConnectionListener;
