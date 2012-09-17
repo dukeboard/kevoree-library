@@ -10,7 +10,7 @@
     <parent>
         <artifactId>org.kevoree.library</artifactId>
         <groupId>org.kevoree.library</groupId>
-        <version>1.7.8-SNAPSHOT</version>
+        <version>1.8.3</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
@@ -21,6 +21,7 @@
     <modules>
         <module>../org.kevoree.library.model.javase</module>
         <module>../org.kevoree.library.model.android</module>
+                <module>../org.kevoree.library.model.jenkins</module>
     </modules>
 
     <repositories>

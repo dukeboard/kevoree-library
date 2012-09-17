@@ -1,14 +1,14 @@
-merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nodeType/1.7.4-SNAPSHOT"
-merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.fakeDomo/1.7.4-SNAPSHOT"
-merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nanohttp/1.7.4-SNAPSHOT"
-merge "mvn:org.kevoree.library.android/org.kevoree.library.android.bluetooth/1.7.4-SNAPSHOT"
-//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.socketChannels/1.7.4-SNAPSHOT"
-//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.defaultChannels/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nodeType/{kevoree.version}"
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.fakeDomo/{kevoree.version}"
+merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.nanohttp/{kevoree.version}"
+merge "mvn:org.kevoree.library.android/org.kevoree.library.android.bluetooth/{kevoree.version}"
+//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.socketChannels/{kevoree.version}"
+//merge "mvn:org.kevoree.corelibrary.android/org.kevoree.library.android.defaultChannels/{kevoree.version}"
 
-merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.nanohttp/1.7.4-SNAPSHOT"
-merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.javaseNode/1.7.4-SNAPSHOT"
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.nanohttp/{kevoree.version}"
+merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.javaseNode/{kevoree.version}"
 
-addNode node0:AndroidNode
+addNode node0:AndroidNode {logLevel = "DEBUG"}
 addNode node1:AndroidNode
 
 addGroup sync : NanoRestGroup
@@ -26,3 +26,8 @@ bind console0.textEntered@node0 =>channel0
 
 //bind console0.showText@node0 =>channel1
 bind console1.showText@node1 =>channel0
+
+
+// specify network properties to allow kev:push
+network node0 {"KEVOREE.remote.node.ip" = "192.168.1.114"}
+// TODO specify network properties for node1

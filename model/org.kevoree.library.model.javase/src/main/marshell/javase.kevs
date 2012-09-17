@@ -9,7 +9,7 @@ merge "mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.serialCT/{k
 
 merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.kinect/{kevoree.version}"
 merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.latex/{kevoree.version}"
-merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.fileSystemSVN/{kevoree.version}"
+//merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.fileSystemSVN/{kevoree.version}"
 merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.airReceiver.server/{kevoree.version}"
 
 merge "mvn:org.kevoree.library.javase/org.kevoree.library.javase.generatorGps/{kevoree.version}"
