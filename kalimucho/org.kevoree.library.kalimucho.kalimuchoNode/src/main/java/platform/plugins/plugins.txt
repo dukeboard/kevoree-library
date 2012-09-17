@@ -1,0 +1,9 @@
+# Noms des classes de plugins de la plateforme a lancer
+# -----------------------------------------------------
+platform.plugins.installables.jarRepository.JarRepositoryManager
+platform.plugins.installables.network.classfinder.ClassFinder
+platform.plugins.installables.network.DNS.KalimuchoDNS
+platform.plugins.installables.network.routing.RoutingService
+# plugins utilisables par l'application
+# -------------------------------------
+platform.plugins.installables.application.BCCommandSenderPlugin

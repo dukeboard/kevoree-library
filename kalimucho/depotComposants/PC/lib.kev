@@ -1,0 +1,92 @@
+<kevoree:ContainerRoot xmlns:xml="http://www.omg.org/XMI" xmlns:xsi="http://wwww.w3.org/2001/XMLSchema-instance" xmlns:kevoree="http://kevoree/1.0" xmi:version="2.0" xsi:type="kevoree:ContainerRoot">
+ <typeDefinitions superTypes="//@typeDefinitions.1" updateMethod="updateNode" startMethod="startNode" factoryBean="org.kevoree.kalimucho.KalimuchoNodeFactory" xsi:type="kevoree:NodeType" name="KalimuchoNode" bean="org.kevoree.kalimucho.KalimuchoNode" stopMethod="stopNode" deployUnits="//@deployUnits.0" managedPrimitiveTypes="//@adaptationPrimitiveTypes.0 //@adaptationPrimitiveTypes.1 //@adaptationPrimitiveTypes.2 //@adaptationPrimitiveTypes.3 //@adaptationPrimitiveTypes.4 //@adaptationPrimitiveTypes.5 //@adaptationPrimitiveTypes.6 //@adaptationPrimitiveTypes.7 //@adaptationPrimitiveTypes.8 //@adaptationPrimitiveTypes.9 //@adaptationPrimitiveTypes.10 //@adaptationPrimitiveTypes.11 //@adaptationPrimitiveTypes.12 //@adaptationPrimitiveTypes.13 //@adaptationPrimitiveTypes.14 //@adaptationPrimitiveTypes.15 //@adaptationPrimitiveTypes.16 //@adaptationPrimitiveTypes.17 //@adaptationPrimitiveTypes.18 //@adaptationPrimitiveTypes.19 //@adaptationPrimitiveTypes.20">
+  <dictionaryType>
+   <attributes datatype="enum=INFO,WARN,DEBUG,ERROR,FINE" optional="true" xsi:type="kevoree:DictionaryAttribute" name="logLevel" state="false" fragmentDependant="false"></attributes>
+   <attributes datatype="enum=INFO,WARN,DEBUG,ERROR,FINE" optional="true" xsi:type="kevoree:DictionaryAttribute" name="coreLogLevel" state="false" fragmentDependant="false"></attributes>
+   <defaultValues value="INFO" xsi:type="kevoree:DictionaryValue" attribute="//@typeDefinitions.0/@dictionaryType/@attributes.0"></defaultValues>
+   <defaultValues value="WARN" xsi:type="kevoree:DictionaryValue" attribute="//@typeDefinitions.0/@dictionaryType/@attributes.1"></defaultValues>
+  </dictionaryType>
+ </typeDefinitions>
+ <typeDefinitions deployUnits="//@deployUnits.15" stopMethod="stopNode" bean="org.kevoree.library.defaultNodeTypes.JavaSENode" name="JavaSENode" xsi:type="kevoree:NodeType" factoryBean="org.kevoree.library.defaultNodeTypes.JavaSENodeFactory" startMethod="startNode" updateMethod="updateNode" managedPrimitiveTypes="//@adaptationPrimitiveTypes.0 //@adaptationPrimitiveTypes.1 //@adaptationPrimitiveTypes.2 //@adaptationPrimitiveTypes.3 //@adaptationPrimitiveTypes.4 //@adaptationPrimitiveTypes.5 //@adaptationPrimitiveTypes.6 //@adaptationPrimitiveTypes.7 //@adaptationPrimitiveTypes.8 //@adaptationPrimitiveTypes.9 //@adaptationPrimitiveTypes.10 //@adaptationPrimitiveTypes.11 //@adaptationPrimitiveTypes.12 //@adaptationPrimitiveTypes.13 //@adaptationPrimitiveTypes.14 //@adaptationPrimitiveTypes.15 //@adaptationPrimitiveTypes.16 //@adaptationPrimitiveTypes.17 //@adaptationPrimitiveTypes.18 //@adaptationPrimitiveTypes.19 //@adaptationPrimitiveTypes.20">
+  <dictionaryType>
+   <attributes datatype="enum=INFO,WARN,DEBUG,ERROR,FINE" optional="true" xsi:type="kevoree:DictionaryAttribute" name="logLevel" state="false" fragmentDependant="false"></attributes>
+   <attributes datatype="enum=INFO,WARN,DEBUG,ERROR,FINE" optional="true" xsi:type="kevoree:DictionaryAttribute" name="coreLogLevel" state="false" fragmentDependant="false"></attributes>
+   <defaultValues value="INFO" xsi:type="kevoree:DictionaryValue" attribute="//@typeDefinitions.1/@dictionaryType/@attributes.0"></defaultValues>
+   <defaultValues value="WARN" xsi:type="kevoree:DictionaryValue" attribute="//@typeDefinitions.1/@dictionaryType/@attributes.1"></defaultValues>
+  </dictionaryType>
+ </typeDefinitions>
+ <typeDefinitions factoryBean="application.SMS.SmsSender" xsi:type="kevoree:ComponentType" name="SmsSender" deployUnits="//@deployUnits.29"></typeDefinitions>
+ <typeDefinitions factoryBean="application.cartes.ChangeMode" xsi:type="kevoree:ComponentType" name="ChangeMode" deployUnits="//@deployUnits.30"></typeDefinitions>
+ <typeDefinitions factoryBean="application.cartes.ChangePosition" xsi:type="kevoree:ComponentType" name="ChangePosition" deployUnits="//@deployUnits.30"></typeDefinitions>
+ <typeDefinitions factoryBean="application.cartes.ChangeZoom" xsi:type="kevoree:ComponentType" name="ChangeZoom" deployUnits="//@deployUnits.30"></typeDefinitions>
+ <typeDefinitions factoryBean="application.affichevideo.AfficheVideo" xsi:type="kevoree:ComponentType" name="AfficheVideo" deployUnits="//@deployUnits.31"></typeDefinitions>
+ <typeDefinitions factoryBean="application.afficheboussole.AfficheBoussole" xsi:type="kevoree:ComponentType" name="AfficheBoussole" deployUnits="//@deployUnits.32"></typeDefinitions>
+ <typeDefinitions factoryBean="application.texte.TextSender" xsi:type="kevoree:ComponentType" name="TextSender" deployUnits="//@deployUnits.33"></typeDefinitions>
+ <typeDefinitions factoryBean="application.image.ImageSender" xsi:type="kevoree:ComponentType" name="ImageSender" deployUnits="//@deployUnits.34"></typeDefinitions>
+ <typeDefinitions factoryBean="application.sound.SoundSender" xsi:type="kevoree:ComponentType" name="SoundSender" deployUnits="//@deployUnits.35"></typeDefinitions>
+ <typeDefinitions factoryBean="application.camera.AfficheImages" xsi:type="kevoree:ComponentType" name="AfficheImages" deployUnits="//@deployUnits.36"></typeDefinitions>
+ <repositories xsi:type="kevoree:Repository" url="http://maven.kevoree.org/archiva/repository/snapshots/"></repositories>
+ <repositories xsi:type="kevoree:Repository" url="http://maven.kevoree.org/release"></repositories>
+ <repositories xsi:type="kevoree:Repository" url="http://maven.kevoree.org/snapshots"></repositories>
+ <repositories xsi:type="kevoree:Repository" url="http://repo.maven.apache.org/maven2"></repositories>
+ <libraries name="JavaSE" xsi:type="kevoree:TypeLibrary" subTypes="//@typeDefinitions.0 //@typeDefinitions.1"></libraries>
+ <libraries name="Frascati" xsi:type="kevoree:TypeLibrary" subTypes="//@typeDefinitions.0"></libraries>
+ <deployUnits requiredLibs="//@deployUnits.1 //@deployUnits.2 //@deployUnits.3 //@deployUnits.4 //@deployUnits.5 //@deployUnits.6 //@deployUnits.7 //@deployUnits.8 //@deployUnits.9 //@deployUnits.10 //@deployUnits.11 //@deployUnits.12 //@deployUnits.13 //@deployUnits.14" hashcode="201206151159371" unitName="org.kevoree.library.kalimucho.kalimuchoNode" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.library.kalimucho" version="1.7.8-SNAPSHOT" type="jar" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.kcl" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="cglib-nodep" xsi:type="kevoree:DeployUnit" groupName="cglib" version="2.2.2" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="objenesis" xsi:type="kevoree:DeployUnit" groupName="org.objenesis" version="1.2" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="scala-library" xsi:type="kevoree:DeployUnit" groupName="org.scala-lang" version="2.9.2" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="slf4j-api" xsi:type="kevoree:DeployUnit" groupName="org.slf4j" version="1.6.4" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.library.javase.javaseNode" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.corelibrary.javase" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.kompare" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.api" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.model" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.adaptation.model" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.framework" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="jgrapht-jdk1.5" xsi:type="kevoree:DeployUnit" groupName="org.jgrapht" version="0.7.3" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.tools.javase.framework" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.tools" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.tools.annotation.api" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.tools" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits requiredLibs="//@deployUnits.16 //@deployUnits.17 //@deployUnits.18 //@deployUnits.19 //@deployUnits.20 //@deployUnits.21 //@deployUnits.22 //@deployUnits.23 //@deployUnits.24 //@deployUnits.25 //@deployUnits.26 //@deployUnits.27 //@deployUnits.28" hashcode="201206150025799" unitName="org.kevoree.library.javase.javaseNode" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.corelibrary.javase" version="1.7.8-SNAPSHOT" type="jar" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.kcl" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="cglib-nodep" xsi:type="kevoree:DeployUnit" groupName="cglib" version="2.2.2" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="objenesis" xsi:type="kevoree:DeployUnit" groupName="org.objenesis" version="1.2" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="scala-library" xsi:type="kevoree:DeployUnit" groupName="org.scala-lang" version="2.9.2" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="slf4j-api" xsi:type="kevoree:DeployUnit" groupName="org.slf4j" version="1.6.4" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.kompare" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.api" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.model" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.adaptation.model" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.framework" xsi:type="kevoree:DeployUnit" groupName="org.kevoree" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="jgrapht-jdk1.5" xsi:type="kevoree:DeployUnit" groupName="org.jgrapht" version="0.7.3" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.tools.javase.framework" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.tools" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits type="jar" unitName="org.kevoree.tools.annotation.api" xsi:type="kevoree:DeployUnit" groupName="org.kevoree.tools" version="1.7.8-SNAPSHOT" targetNodeType="//@typeDefinitions.1"></deployUnits>
+ <deployUnits unitName="SMS.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="cartesposition.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="affichevideo.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="afficheboussole.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="texte.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="image.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="sound.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <deployUnits unitName="camera.jar" xsi:type="kevoree:DeployUnit" targetNodeType="//@typeDefinitions.0"></deployUnits>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateType"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateDeployUnit"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddType"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddDeployUnit"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddThirdParty"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveType"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveDeployUnit"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateDictionaryInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="AddFragmentBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveFragmentBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="UpdateFragmentBinding"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="StartInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="StopInstance"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="StartThirdParty"></adaptationPrimitiveTypes>
+ <adaptationPrimitiveTypes xsi:type="kevoree:AdaptationPrimitiveType" name="RemoveThirdParty"></adaptationPrimitiveTypes>
+</kevoree:ContainerRoot>

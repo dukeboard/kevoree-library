@@ -1,0 +1,18 @@
+ {
+merge 'mvn:/affichevideo.jar/'
+merge 'mvn:org.kevoree.corelibrary.javase/org.kevoree.library.javase.javaseNode/{kevoree.version}'
+merge 'mvn:/cartesposition.jar/'
+merge 'mvn:/sound.jar/'
+merge 'mvn:/SMS.jar/'
+merge 'mvn:org.kevoree.library.kalimucho/org.kevoree.library.kalimucho.kalimuchoNode/{kevoree.version}'
+merge 'mvn:/afficheboussole.jar/'
+merge 'mvn:/image.jar/'
+merge 'mvn:/camera.jar/'
+merge 'mvn:/texte.jar/'
+addNode node0:KalimuchoNode
+ {
+  addComponent AfficheBo899@node0 : AfficheBoussole {}
+updateDictionary AfficheBo899@node0 
+}
+
+}
