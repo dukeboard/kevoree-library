@@ -9,8 +9,7 @@
     <parent>
         <artifactId>org.kevoree.library.javase.root</artifactId>
         <groupId>org.kevoree.library.javase</groupId>
-        <version>1.8.3</version>
-        <relativePath>../org.kevoree.library.javase.root/pom.xml</relativePath>
+        <version>1.8.6</version>
     </parent>
 
     <repositories>
@@ -22,34 +21,15 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.kevoree.extra.xmpp.lib</groupId>
+            <groupId>jivesoftware</groupId>
             <artifactId>smack</artifactId>
-            <version>3.2.2</version>
+            <version>3.1.0</version>
         </dependency>
         <dependency>
-            <groupId>org.kevoree.extra.xmpp.lib</groupId>
+            <groupId>jivesoftware</groupId>
             <artifactId>smackx</artifactId>
-            <version>3.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kevoree.tools</groupId>
-            <artifactId>org.kevoree.tools.javase.framework</artifactId>
-            <version>1.8.4</version>
+            <version>3.1.0</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Private-Package>org.kevoree.library.xmpp.*, org.jivesoftware.*, com.jcraft.jzlib, org.xmlpull.*</Private-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

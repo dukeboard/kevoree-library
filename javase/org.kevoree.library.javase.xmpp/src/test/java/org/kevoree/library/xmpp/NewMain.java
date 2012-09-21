@@ -1,6 +1,7 @@
 package org.kevoree.library.xmpp;
 
 import org.jivesoftware.smack.packet.Presence;
+import org.kevoree.library.xmpp.cmp.XmppComponent;
 
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -20,25 +21,25 @@ public class NewMain {
         // TODO code application logic here
 
         System.out.println("Beginning XMPP test");
-       // XmppComponent compo = new XmppComponent();
+        XmppComponent compo = new XmppComponent();
 
         HashMap<String,Object> p = new HashMap<String,Object>();
         p.put("login","entimid@gmail.com");
         p.put("password","entimidpass");
 
-      //  compo.setDictionary(p);
+       compo.setDictionary(p);
 
-      //  compo.start();
+        compo.start();
 
         Properties msg = new Properties();
         msg.put("to","gregory.nain@gmail.com");
         msg.put("content", "Yeepee");
 
-       // compo.sendMessage(msg);
+        compo.sendMessage(msg);
 
         Thread.sleep(2 * 40 * 1000);
 
-     //   compo.stop();
+        compo.stop();
     }
 
 
