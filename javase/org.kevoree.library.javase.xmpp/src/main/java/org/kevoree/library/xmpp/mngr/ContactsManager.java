@@ -6,6 +6,8 @@ import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.PacketExtension;
 import org.jivesoftware.smack.packet.Presence;
 import org.kevoree.library.xmpp.core.XmppKernel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
 
@@ -19,6 +21,7 @@ import java.util.Collection;
 public class ContactsManager implements RosterListener {
 
     private XmppKernel kernel;
+    private static final Logger logger = LoggerFactory.getLogger(ContactsManager.class);
 
     public ContactsManager(XmppKernel kernel) {
         this.kernel = kernel;
@@ -64,67 +67,70 @@ public class ContactsManager implements RosterListener {
         return true;
     }
 
-    public void printContactsStats() {
+    public String printContactsStats() {
+        String stats = "";
         for(RosterEntry entry : getContactList()) {
             Presence p = kernel.getXmppConnection().getRoster().getPresence(entry.getUser());
 
-            System.out.print("\tPresence: "+entry.getUser()+"[" + p.getType() + "," + p.getMode() + "," + p.getStatus()+"]\n");
-            System.out.print("\tEntry: "+entry.getUser()+"[" + entry.getName() + "," + entry.getUser() + "," + entry.getStatus() + "," + entry.getType() + "]\n");
+            stats += ("\tPresence: "+entry.getUser()+"[" + p.getType() + "," + p.getMode() + "," + p.getStatus()+"]\n");
+            stats += ("\tEntry: "+entry.getUser()+"[" + entry.getName() + "," + entry.getUser() + "," + entry.getStatus() + "," + entry.getType() + "]\n");
 
             for(String propName : p.getPropertyNames()) {
-                System.out.print("\t\tP:"+ propName + "=" + p.getProperty(propName) + "\n");
+                stats += ("\t\tP:"+ propName + "=" + p.getProperty(propName) + "\n");
             }
             for(PacketExtension ext : p.getExtensions()) {
-                System.out.print("\t\tE:"+ ext.toXML() + "\n");
+                stats += ("\t\tE:"+ ext.toXML() + "\n");
             }
         }
+        logger.debug(stats);
+        return stats;
     }
 
     @Override
     public void entriesAdded(Collection<String> addedContacts) {
-        System.out.print("Xmpp::ContactsManager::Contacts added:\n");
+       String temp = ("Xmpp::ContactsManager::Contacts added:\n");
         for(String contact : addedContacts) {
-            System.out.print("\t"+contact+"\n");
+            temp += ("\t"+contact+"\n");
         }
-        System.out.println();
+       logger.debug(temp);
     }
 
     @Override
     public void entriesUpdated(Collection<String> updatedContacts) {
-        System.out.print("Xmpp::ContactsManager::Contacts updated:\n");
+        String temp = "Xmpp::ContactsManager::Contacts updated:\n";
         for(String contact : updatedContacts) {
             RosterEntry entry = kernel.getXmppConnection().getRoster().getEntry(contact);
             Presence p = kernel.getXmppConnection().getRoster().getPresence(contact);
 
-            System.out.print("\tPresence: "+contact+"[" + p.getType() + "," + p.getMode() + "," + p.getStatus()+"]\n");
-            System.out.print("\tEntry: "+contact+"[" + entry.getName() + "," + entry.getUser() + "," + entry.getStatus() + "," + entry.getType() + "]\n");
+            temp += ("\tPresence: "+contact+"[" + p.getType() + "," + p.getMode() + "," + p.getStatus()+"]\n");
+            temp += ("\tEntry: "+contact+"[" + entry.getName() + "," + entry.getUser() + "," + entry.getStatus() + "," + entry.getType() + "]\n");
 
 
             for(String propName : p.getPropertyNames()) {
-                System.out.print("\t\tP:"+ propName + "=" + p.getProperty(propName) + "\n");
+                temp += ("\t\tP:"+ propName + "=" + p.getProperty(propName) + "\n");
             }
             for(PacketExtension ext : p.getExtensions()) {
-                System.out.print("\t\tE:"+ ext.toXML() + "\n");
+                temp += ("\t\tE:"+ ext.toXML() + "\n");
             }
 
         }
-        System.out.println();
+        logger.debug(temp);
     }
 
     @Override
     public void entriesDeleted(Collection<String> removedContacts) {
-        System.out.print("Xmpp::ContactsManager::Contacts DELETED:\n");
+        String temp = "Xmpp::ContactsManager::Contacts DELETED:\n";
         for(String contact : removedContacts) {
-            System.out.print("\t"+contact+"\n");
+            temp += "\t"+contact+"\n";
         }
-        System.out.println();
+        logger.debug(temp);
     }
 
     @Override
     public void presenceChanged(Presence presence) {
-        System.out.println("Xmpp::ContactsManager::" + presence.getFrom() + " is now " + presence.getType());
+        logger.debug(presence.getFrom() + " is now " + presence.getType());
         if(presence.getType() == Presence.Type.available) {
-            System.out.println(presence.getFrom().substring(presence.getFrom().indexOf("/")) + " just Connected ! Triggering pending messages treatment");
+            logger.debug(presence.getFrom().substring(presence.getFrom().indexOf("/")) + " just Connected ! Triggering pending messages treatment");
             kernel.getChatsManager().processPendings(presence.getFrom().substring(0,presence.getFrom().indexOf("/")));
         }
     }

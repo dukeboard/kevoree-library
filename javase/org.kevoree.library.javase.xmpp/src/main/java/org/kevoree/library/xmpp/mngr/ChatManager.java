@@ -15,6 +15,8 @@ import org.kevoree.library.xmpp.lst.DefaultMessageListener;
 import org.kevoree.library.xmpp.str.Pending;
 import org.kevoree.library.xmpp.str.PendingFile;
 import org.kevoree.library.xmpp.str.PendingMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
@@ -32,6 +34,8 @@ public class ChatManager {
 
     private Map<String, Chat> activeChats = new HashMap<String, Chat>();
     private Map<String, List<Pending>> pendings = new HashMap<String, List<Pending>>();
+    private static final Logger logger = LoggerFactory.getLogger(ChatManager.class);
+
     //private DefaultMessageListener defaultListener = new DefaultMessageListener();
 
     public ChatManager(XmppKernel kernel) {
@@ -84,11 +88,11 @@ public class ChatManager {
                     PendingFile msg = (PendingFile)p;
                     sendFile(msg.getFile(), msg.getDescription(), msg.getTo());
                 } else {
-                    System.out.println("Pending message type UNKNOWN: " + p.getClass().getName());
+                    logger.warn("Pending message type UNKNOWN: " + p.getClass().getName());
                 }
             }
         } else {
-            System.out.println("no pending messages for: " + to);
+           logger.debug("no pending messages for: " + to);
         }
     }
 

@@ -50,32 +50,32 @@ public class XmppComponent extends AbstractComponentType {
 
     @Start
     public void start() {
-        System.out.println("XmppComponent::Starting...");
-        System.out.println("Credentials: '" + (String)getDictionary().get("login") + "':'" + (String)getDictionary().get("password") + "'");
+        logger.info("Starting");
+        logger.debug("Credentials: '" + (String)getDictionary().get("login") + "':'" + (String)getDictionary().get("password") + "'");
         client = new ConnectionManager();
         if(client.login((String)getDictionary().get("login"), (String)getDictionary().get("password"))) {
   //      defaultListener = new LocalMessageListener(this);
    //     client.setDefaultResponseStrategy(defaultListener);
-
-        System.out.println("XmppComponent::Started.");
+            logger.info("Started");
         } else {
-            System.out.println("Error while connecting to the server.");
+            logger.warn("Error while connecting to the server.");
         }
 
     }
 
     @Stop
     public void stop() {
-        System.out.println("XmppComponent::Closing...");
+        logger.info("Closing...");
+        /*
         System.out.print("Current contact list:\n");
         for(RosterEntry entry : client.getContacts()) {
             System.out.print("\t" + entry.getUser() + " as " + entry.getName() + " is "+entry.getStatus() + "\n");
             //System.out.print("\t"+entry.toString()+"\n");
         }
         System.out.println();
-
+         */
         client.disconnect();
-        System.out.println("XmppComponent::Closed.");
+        logger.info("Closed.");
     }
 
 }
